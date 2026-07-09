@@ -1,8 +1,7 @@
 package com.library.repository;
 
-public class BookRepository {
+import com.library.entity.Book;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-    public void getBookDetails() {
-        System.out.println("BookRepository: Fetching book details...");
-    }
+public interface BookRepository extends JpaRepository<Book, Long> {
 }
