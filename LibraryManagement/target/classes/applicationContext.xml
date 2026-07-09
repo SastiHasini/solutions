@@ -1,76 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <!--
-        Spring XML Configuration File - applicationContext.xml
-        
-        This XML file defines the Spring beans and their dependencies.
-        The Spring IoC container reads this file and creates bean instances
-        according to the configurations defined here.
-        
-        Key Elements:
-        - <beans>: Root element containing all bean definitions
-        - <bean>: Defines a bean that the IoC container will manage
-        - id: Unique identifier for the bean (used to retrieve from context)
-        - class: Fully qualified class name of the bean
-        - <constructor-arg>: Specifies constructor argument for dependency injection
-        - ref: Reference to another bean by its id
-    -->
+    <bean id="bookRepository" class="com.library.repository.BookRepository" />
 
-    <!--
-        BookRepository Bean Definition
-        
-        This bean represents the data access layer.
-        - id: Unique identifier used to retrieve this bean from the container
-        - class: Fully qualified name of the BookRepository class
-        
-        The IoC container will:
-        1. Instantiate the BookRepository class
-        2. Store it as a singleton bean with id "bookRepository"
-        3. Make it available for injection into other beans
-    -->
-    <bean id="bookRepository" class="com.library.repository.BookRepository">
-        <!--
-            No constructor arguments required for BookRepository.
-            It has a default no-argument constructor.
-        -->
-    </bean>
-
-    <!--
-        BookService Bean Definition
-        
-        This bean represents the service/business logic layer.
-        - id: Unique identifier used to retrieve this bean from the container
-        - class: Fully qualified name of the BookService class
-        
-        BookService requires a BookRepository instance as a constructor parameter.
-        We use constructor injection to provide this dependency.
-        
-        The IoC container will:
-        1. Create the BookRepository bean (if not already created)
-        2. Pass the BookRepository bean to BookService's constructor
-        3. Instantiate BookService with the injected dependency
-        4. Store it as a singleton bean with id "bookService"
-    -->
     <bean id="bookService" class="com.library.service.BookService">
-        <!--
-            Constructor Injection Configuration
-            
-            <constructor-arg> specifies an argument to pass to the constructor.
-            - ref="bookRepository": Refers to the bean with id "bookRepository"
-            
-            This ensures that when BookService is instantiated,
-            the Spring IoC container will automatically inject the BookRepository bean.
-            
-            In the BookService class:
-            public BookService(BookRepository bookRepository) { ... }
-            
-            The constructor parameter will receive the bookRepository bean instance.
-        -->
-        <constructor-arg ref="bookRepository"/>
+        <property name="bookRepository" ref="bookRepository" />
     </bean>
 
 </beans>
