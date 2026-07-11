@@ -1,4 +1,3 @@
-package FinancialForecasting.src;
 public class Forecast {
 
     // Recursive method to calculate future value

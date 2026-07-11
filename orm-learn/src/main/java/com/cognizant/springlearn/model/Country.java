@@ -1,4 +1,4 @@
-package com.cognizant.ormlearn.model;
+package com.cognizant.springlearn.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
